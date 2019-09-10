@@ -1,4 +1,6 @@
 # xromm
-Integrate XMALab and DeepLabCut for high-throughput XROMM
+Integrate [XMALab](https://bitbucket.org/xromm/xmalab) and [DeepLabCut](https://github.com/AlexEMG/DeepLabCut) for high-throughput XROMM
 
 The file Workflow_Instructions.pdf contains a step-by-step walk through of the process. Stay tuned for frequent updates, and please, post any bugs/issues.
+
+Special thanks to Ben Knorlein and DeepLabCut authors.
