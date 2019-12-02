@@ -3,4 +3,4 @@ Integrate [XMALab](https://bitbucket.org/xromm/xmalab) and [DeepLabCut](https://
 
 The file Workflow_Instructions.pdf contains a step-by-step walk through of the process. Stay tuned for frequent updates, and please, post any bugs/issues.
 
-Special thanks to Ben Knorlein for XMALab and Mackenzie Mathis, Alexander Mathis, and all other DeepLabCut authors.
+Special thanks to Ben Knorlein for XMALab and Mackenzie Mathis, Alexander Mathis, Tanmay Nath, and all other DeepLabCut authors/contributers.
