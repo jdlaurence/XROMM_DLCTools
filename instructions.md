@@ -15,8 +15,12 @@ Here we
 
 _**It is essential**_ that the tracking in this training dataset is as accurate as possible, and that if a marker is not visible, you delete the tracked data for that marker for that frame. Network performance is limited by the quality of the training data.
 
-1. *Track in XMALab*. We recommend tracking 200-600 frames across multiple trials for a single individual. Be sure you are tracking regions that include different poses, as the goal is to capture the variation in the dataset. If you have already tracked several trials, you can proceed to the next step. Having more than 600 frames is fine, as you can decide the number of frame to use for your training dataset.
+1. *Track in XMALab*. We recommend tracking 200-600 frames across multiple trials for a single individual. Be sure you are tracking regions that include different poses, as the goal is to capture the variation in the dataset. If you have already tracked several trials, you can proceed to the next step. Having more than 600 frames is fine, as you can decide the number of frames to use for your training dataset.
 
 
 
 2. *Export 2D points*. The XROMMTools function xma_to_dlc requires a specific folder struture to bring XMALab tracked data into DeepLabCut. Each trial with frames you wish to include in the training dataset must have its own folder, which must contain the export 2D points csv, as well as the trial images. See image below.  
+
+
+![GitHub Logo](https://imgur.com/a/8RVNPOo)
+
