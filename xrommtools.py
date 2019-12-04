@@ -39,7 +39,7 @@ def xma_to_dlc(path_config_file,data_path,dataset_name,scorer,nframes,nnetworks 
         df1=pd.read_csv(data_path+"/"+trial+"/"+filename[0], sep=',',header=None)
 
         # read pointnames from header row
-        pointnames = df1.loc[0,::4].astype(str).str[:-8].tolist()
+        pointnames = df1.loc[0,::4].astype(str).str[:-7].tolist()
         pnames.append(pointnames)
 
         df1 = df1.loc[1:,].reset_index(drop=True) # remove header row
@@ -214,7 +214,7 @@ def xma_to_dlc(path_config_file,data_path,dataset_name,scorer,nframes,nnetworks 
                 # file is actually a file        
                 # extract frames from video and convert to png
                     video = data_path+"/"+trial+"/"+file
-                    relpath = "labeled-data/"+dataset_name+"_cam"+str(camera)+"/"
+                    relpath = "labeled-data/"+dataset_name+"/"
                     frames = picked_frames[trialnum]
                     frames.sort()
                     cap = cv2.VideoCapture(video)
@@ -234,6 +234,7 @@ def xma_to_dlc(path_config_file,data_path,dataset_name,scorer,nframes,nnetworks 
                 xpos = df1.iloc[frames,0+(camera-1)*2::4]
                 ypos = df1.iloc[frames,1+(camera-1)*2::4]
                 temp_data = pd.concat([xpos,ypos],axis=1).sort_index(axis=1)
+                temp_data.columns = range(temp_data.shape[1])
                 data = pd.concat([data,temp_data])
 
     ### Part 3: Complete final structure of datafiles
@@ -407,7 +408,7 @@ def add_frames(path_config_file, data_path, frames, nnetworks = 1, path_config_f
                 if os.path.isdir(data_path+"/"+trial+"/"+file):
                     imgpath = data_path+"/"+trial+"/"+file
                     imgs = os.listdir(imgpath)
-                    relpath = "labeled-data/"+dataset_name+"/"
+                    relpath = "labeled-data/"+dataset_name+"_cam"+str(camera)+"/"
                     frames = picked_frames[trialnum]
                     frames.sort()
 
@@ -421,7 +422,7 @@ def add_frames(path_config_file, data_path, frames, nnetworks = 1, path_config_f
                 # file is actually a file        
                 # extract frames from video and convert to png
                     video = data_path+"/"+trial+"/"+file
-                    relpath = "labeled-data/"+dataset_name+"/"
+                    relpath = "labeled-data/"+dataset_name+"_cam"+str(camera)+"/"
                     frames = picked_frames[trialnum]
                     frames.sort()
                     cap = cv2.VideoCapture(video)
