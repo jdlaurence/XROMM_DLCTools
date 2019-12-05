@@ -17,6 +17,7 @@ import pandas as pd
 import numpy as np
 import cv2
 import random
+from deeplabcut.pose_estimation_tensorflow.predict_videos import analyze_videos 
 
 def xma_to_dlc(path_config_file,data_path,dataset_name,scorer,nframes,nnetworks = 1, path_config_file_cam2 = []):
     config = path_config_file[:-12]
@@ -340,13 +341,15 @@ def analyze_xromm_videos(path_config_file,path_data_to_analyze,iteration,nnetwor
                 raise ValueError('Cannot locate %s video file or image folder' %trial)
             #analyze video
             if nnetworks == 1:
-                deeplabcut.analyze_videos(config,file,destfolder = savepath,save_as_csv=True)
+                analyze_videos(config,file,destfolder = savepath,save_as_csv=True)
             else:
-                deeplabcut.analyze_videos(configs[camera-1],file,destfolder = savepath,save_as_csv=True)
+                analyze_videos(configs[camera-1],file,destfolder = savepath,save_as_csv=True)
 
             # get filenames and read analyzed data
             contents = os.listdir(savepath)
             datafiles = [s for s in contents if '.h5' in s]
+            if not datafiles:
+                raise ValueError('Cannot find predicted points. Some wrong with DeepLabCut?')
             cam1data = pd.read_hdf(savepath+"/"+datafiles[0])
             cam2data = pd.read_hdf(savepath+"/"+datafiles[1]) 
             xrommtools.dlc_to_xma(cam1data,cam2data,trial,savepath)
