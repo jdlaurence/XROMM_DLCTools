@@ -339,20 +339,22 @@ def analyze_xromm_videos(path_config_file,path_data_to_analyze,iteration,nnetwor
                     file = name
             if not file:
                 raise ValueError('Cannot locate %s video file or image folder' %trial)
+            
+            video = trialpath + "/" + file
             #analyze video
             if nnetworks == 1:
-                analyze_videos(config,file,destfolder = savepath,save_as_csv=True)
+                analyze_videos(config,[video],destfolder = savepath,save_as_csv=True)
             else:
-                analyze_videos(configs[camera-1],file,destfolder = savepath,save_as_csv=True)
+                analyze_videos(configs[camera-1],[video],destfolder = savepath,save_as_csv=True)
 
-            # get filenames and read analyzed data
-            contents = os.listdir(savepath)
-            datafiles = [s for s in contents if '.h5' in s]
-            if not datafiles:
-                raise ValueError('Cannot find predicted points. Some wrong with DeepLabCut?')
-            cam1data = pd.read_hdf(savepath+"/"+datafiles[0])
-            cam2data = pd.read_hdf(savepath+"/"+datafiles[1]) 
-            xrommtools.dlc_to_xma(cam1data,cam2data,trial,savepath)
+        # get filenames and read analyzed data
+        contents = os.listdir(savepath)
+        datafiles = [s for s in contents if '.h5' in s]
+        if not datafiles:
+            raise ValueError('Cannot find predicted points. Some wrong with DeepLabCut?')
+        cam1data = pd.read_hdf(savepath+"/"+datafiles[0])
+        cam2data = pd.read_hdf(savepath+"/"+datafiles[1]) 
+        dlc_to_xma(cam1data,cam2data,trial,savepath)
             
 def add_frames(path_config_file, data_path, frames, nnetworks = 1, path_config_file_cam2 = "enterpathofcam2config"):
 
