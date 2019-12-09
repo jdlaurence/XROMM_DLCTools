@@ -161,6 +161,10 @@ def xma_to_dlc(path_config_file,data_path,dataset_name,scorer,nframes,nnetworks 
                 frame.iloc[:,0:2] = data.iloc[:, 2*i:2*i+2].values.astype(float)
                 dataFrame = pd.concat([dataFrame, frame],axis=1)
             dataFrame.replace('', np.nan, inplace=True)
+            dataFrame.replace(' NaN', np.nan, inplace=True)
+            dataFrame.replace(' NaN ', np.nan, inplace=True)
+            dataFrame.replace('NaN ', np.nan, inplace=True)
+            dataFrame.apply(pd.to_numeric)
             dataFrame.to_hdf(h5_save_path, key="df_with_missing", mode="w")
             dataFrame.to_csv(csv_save_path,na_rep='NaN')
             print("...done.")
@@ -248,6 +252,10 @@ def xma_to_dlc(path_config_file,data_path,dataset_name,scorer,nframes,nnetworks 
             frame.iloc[:,0:2] = data.iloc[:, 2*i:2*i+2].values.astype(float)
             dataFrame = pd.concat([dataFrame, frame],axis=1)
         dataFrame.replace('', np.nan, inplace=True)
+        dataFrame.replace(' NaN', np.nan, inplace=True)
+        dataFrame.replace(' NaN ', np.nan, inplace=True)
+        dataFrame.replace('NaN ', np.nan, inplace=True)
+        dataFrame.apply(pd.to_numeric)
         dataFrame.to_hdf(h5_save_path, key="df_with_missing", mode="w")
         dataFrame.to_csv(csv_save_path,na_rep='NaN')
         print("...done.")
@@ -356,7 +364,7 @@ def analyze_xromm_videos(path_config_file,path_data_to_analyze,iteration,nnetwor
         cam2data = pd.read_hdf(savepath+"/"+datafiles[1]) 
         dlc_to_xma(cam1data,cam2data,trial,savepath)
             
-def add_frames(path_config_file, data_path, frames, nnetworks = 1, path_config_file_cam2 = "enterpathofcam2config"):
+def add_frames(path_config_file, data_path, iteration, frames, nnetworks = 1, path_config_file_cam2 = "enterpathofcam2config"):
 
     #input: config file paths, path of data to add to trainingdataset, frames-csv file where first col is trialnames and following cols are frame numbers
     # will look for 2D points file based on name (if there are multiple csv files)
@@ -413,7 +421,7 @@ def add_frames(path_config_file, data_path, frames, nnetworks = 1, path_config_f
                 if os.path.isdir(data_path+"/"+trial+"/"+file):
                     imgpath = data_path+"/"+trial+"/"+file
                     imgs = os.listdir(imgpath)
-                    relpath = "labeled-data/"+dataset_name+"_cam"+str(camera)+"/"
+                    relpath = "labeled-data/"+dataset_name+"/"
                     frames = picked_frames[trialnum]
                     frames.sort()
 
@@ -427,7 +435,7 @@ def add_frames(path_config_file, data_path, frames, nnetworks = 1, path_config_f
                 # file is actually a file        
                 # extract frames from video and convert to png
                     video = data_path+"/"+trial+"/"+file
-                    relpath = "labeled-data/"+dataset_name+"_cam"+str(camera)+"/"
+                    relpath = "labeled-data/"+dataset_name+"/"
                     frames = picked_frames[trialnum]
                     frames.sort()
                     cap = cv2.VideoCapture(video)
@@ -444,6 +452,7 @@ def add_frames(path_config_file, data_path, frames, nnetworks = 1, path_config_f
 
                 # get 2D points file / data    
                 # extract 2D points data
+                contents = os.listdir(data_path+"/"+trial+"/"+"it"+str(iteration))
                 pointsfile = [x for x in contents if '.csv' in x]
 
                 if not pointsfile:
@@ -463,7 +472,7 @@ def add_frames(path_config_file, data_path, frames, nnetworks = 1, path_config_f
                 else:
                     pointsfile = pointsfile[0]
 
-                df = pd.read_csv(data_path+'/'+trial+'/'+pointsfile,sep=',',header=None)
+                df = pd.read_csv(data_path+'/'+trial+"/"+"it"+str(iteration)+'/'+pointsfile,sep=',',header=None)
                 df = df.loc[1:,].reset_index(drop=True)
                 xpos = df.iloc[frames,0+(camera-1)*2::4]
                 ypos = df.iloc[frames,1+(camera-1)*2::4]
@@ -471,6 +480,10 @@ def add_frames(path_config_file, data_path, frames, nnetworks = 1, path_config_f
                 temp_data.index = relnames
                 temp_data.columns = data.columns
                 data = pd.concat([data,temp_data])
+            data.replace(' NaN', np.nan, inplace=True)
+            data.replace(' NaN ', np.nan, inplace=True)
+            data.replace('NaN ', np.nan, inplace=True)
+            data.apply(pd.to_numeric)
             data.to_hdf(labeleddata_path+'/'+h5file[0], key="df_with_missing", mode="w")
             data.to_csv(labeleddata_path+'/'+csvfile[0],na_rep='NaN')
             
@@ -539,6 +552,7 @@ def add_frames(path_config_file, data_path, frames, nnetworks = 1, path_config_f
 
                 # get 2D points file / data    
                 # extract 2D points data
+                contents = os.listdir(data_path+"/"+trial+"/"+"it"+str(iteration))
                 pointsfile = [x for x in contents if '.csv' in x]
 
                 if not pointsfile:
@@ -558,7 +572,7 @@ def add_frames(path_config_file, data_path, frames, nnetworks = 1, path_config_f
                 else:
                     pointsfile = pointsfile[0]
 
-                df = pd.read_csv(data_path+'/'+trial+'/'+pointsfile,sep=',',header=None)
+                df = pd.read_csv(data_path+'/'+trial+"/"+"it"+str(iteration)+'/'+pointsfile,sep=',',header=None)
                 df = df.loc[1:,].reset_index(drop=True)
                 xpos = df.iloc[frames,0+(camera-1)*2::4]
                 ypos = df.iloc[frames,1+(camera-1)*2::4]
@@ -566,6 +580,10 @@ def add_frames(path_config_file, data_path, frames, nnetworks = 1, path_config_f
                 temp_data.index = relnames
                 temp_data.columns = data.columns
                 data = pd.concat([data,temp_data])
+        data.replace(' NaN', np.nan, inplace=True)
+        data.replace(' NaN ', np.nan, inplace=True)
+        data.replace('NaN ', np.nan, inplace=True)
+        data.apply(pd.to_numeric)
         data.to_hdf(labeleddata_path+'/'+h5file[0], key="df_with_missing", mode="w")
         data.to_csv(labeleddata_path+'/'+csvfile[0],na_rep='NaN')
             
