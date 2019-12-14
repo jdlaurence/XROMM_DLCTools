@@ -20,13 +20,13 @@ _**It is essential**_ that the tracking in this training dataset is as accurate 
 
 2. *Export 2D points*. The XROMMTools function xma_to_dlc requires a specific folder struture to bring XMALab tracked data into DeepLabCut. Each trial with frames you wish to include in the training dataset must have its own folder, which must contain the export 2D points csv, as well as the trial images. See image below.  
 
-## From this point on, follow along with the provided Jupyter Notebooks. Brief explanations of the steps are are below:
+## From this point on, follow along with the provided [Demo Jupyter Notebook](XROMM_Pipeline_Demo.ipynb). Brief explanations of the steps are are below:
 
 ## Step 3: Create DeepLabCut Project and edit metadata
 
 ## Step 4: Create training dataset and train first iteration of neural network
 
-## Step 5: Analyze (predict points for) new videoss
+## Step 5: Analyze (predict points for) new videos
 
 ## Step 6: Import predicted points into XMALab and evaluate performance
 
