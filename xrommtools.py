@@ -473,9 +473,11 @@ def add_frames(path_config_file, data_path, iteration, frames, nnetworks = 1, pa
                         file = t[0]
                 else:
                     file = pointsfile[0]
-                print("Reading and adding frames from " + data_path+'/'+trial+"/"+"it"+str(iteration)+'/'+file)
+                print("Reading and adding the following frames from " + data_path+'/'+trial+"/"+"it"+str(iteration)+'/'+file)
                 df = pd.read_csv(data_path+'/'+trial+"/"+"it"+str(iteration)+'/'+file,sep=',',header=None)
                 df = df.loc[1:,].reset_index(drop=True)
+                print(frames)
+                frames = [x - 1 for x in frames] # account for zero index in python
                 xpos = df.iloc[frames,0+(camera-1)*2::4]
                 ypos = df.iloc[frames,1+(camera-1)*2::4]
                 temp_data = pd.concat([xpos,ypos],axis=1).sort_index(axis=1)
@@ -485,7 +487,9 @@ def add_frames(path_config_file, data_path, iteration, frames, nnetworks = 1, pa
             data.replace(' NaN', np.nan, inplace=True)
             data.replace(' NaN ', np.nan, inplace=True)
             data.replace('NaN ', np.nan, inplace=True)
-            data.apply(pd.to_numeric)
+            data = data.astype('float')
+            data = data.round(2)
+            data = data.apply(pd.to_numeric)
             data.to_hdf(labeleddata_path+'/'+h5file[0], key="df_with_missing", mode="w")
             data.to_csv(labeleddata_path+'/'+csvfile[0],na_rep='NaN')
             
@@ -585,8 +589,8 @@ def add_frames(path_config_file, data_path, iteration, frames, nnetworks = 1, pa
         data.replace(' NaN', np.nan, inplace=True)
         data.replace(' NaN ', np.nan, inplace=True)
         data.replace('NaN ', np.nan, inplace=True)
-        data.astype('float')
-        data = data.round(1)
+        data = data.astype('float')
+        data = data.round(2)
         data = data.apply(pd.to_numeric)
         data.to_hdf(labeleddata_path+'/'+h5file[0], key="df_with_missing", mode="w")
         data.to_csv(labeleddata_path+'/'+csvfile[0],na_rep='NaN')
