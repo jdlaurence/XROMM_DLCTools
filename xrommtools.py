@@ -45,7 +45,7 @@ def xma_to_dlc(path_config_file,data_path,dataset_name,scorer,nframes,nnetworks 
 
         df1 = df1.loc[1:,].reset_index(drop=True) # remove header row
 
-        # temp_idx = rows where fewer than half of columns are ~NaN
+        # temp_idx = rows where fewer than half of columns are NaN
         ncol = df1.shape[1]
         temp_idx = list(df1.index.values[(~pd.isnull(df1)).sum(axis = 1) >= ncol/2])
 
