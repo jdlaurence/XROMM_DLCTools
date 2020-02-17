@@ -481,6 +481,10 @@ def add_frames(path_config_file, data_path, iteration, frames, nnetworks = 1, pa
                 xpos = df.iloc[frames,0+(camera-1)*2::4]
                 ypos = df.iloc[frames,1+(camera-1)*2::4]
                 temp_data = pd.concat([xpos,ypos],axis=1).sort_index(axis=1)
+                if temp_data.shape[1] > data.shape[1]:
+                    raise ValueError('There are %d extra points in the corrected points file'%((temp_data.shape[1] - data.shape[1])/2))
+                if temp_data.shape[1] < data.shape[1]:
+                    raise ValueError('There are %d missing points in the corrected points file'%((data.shape[1] - temp_data.shape[1])/2))
                 temp_data.index = relnames
                 temp_data.columns = data.columns
                 data = pd.concat([data,temp_data])
@@ -584,6 +588,10 @@ def add_frames(path_config_file, data_path, iteration, frames, nnetworks = 1, pa
                 ypos = df.iloc[frames,1+(camera-1)*2::4]
                 temp_data = pd.concat([xpos,ypos],axis=1).sort_index(axis=1)
                 temp_data.index = relnames
+                if temp_data.shape[1] > data.shape[1]:
+                    raise ValueError('There are %d extra points in the corrected points file'%((temp_data.shape[1] - data.shape[1])/2))
+                if temp_data.shape[1] < data.shape[1]:
+                    raise ValueError('There are %d missing points in the corrected points file'%((data.shape[1] - temp_data.shape[1])/2))
                 temp_data.columns = data.columns
                 data = pd.concat([data,temp_data])
         data.replace(' NaN', np.nan, inplace=True)
