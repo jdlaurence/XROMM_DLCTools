@@ -9,9 +9,9 @@ This workflow has been tested on machines running Windows 10 using the DeepLabCu
 3. If you haven't already, clone or download this repository, and locate the XROMM_DLCTools [functions](xrommtools.py) and [Demo Jupyter Notebook](XROMM_Pipeline_Demo.ipynb)
 4. **Copy** the xrommtools.py file into the DLC Anaconda environment's utils folder, which can be found where Anaconda was installed- here: ...\Anaconda3\envs\dlc-windowsGPU\Lib\site-packages\deeplabcut\utils
 
-  Or on a Mac:
+      Or on a Mac:
 
-  .../opt/anaconda3/envs/dlc-macOS-CPU/lib/python3.6/site-packages/deeplabcut/utils
+      .../opt/anaconda3/envs/dlc-macOS-CPU/lib/python3.6/site-packages/deeplabcut/utils
 
 5.  **Importantly,** Follow DLC documentation to verify successful installation before proceeding.
 
