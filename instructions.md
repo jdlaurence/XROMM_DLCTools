@@ -13,6 +13,8 @@ This workflow has been tested on machines running Windows 10 using the DeepLabCu
 
       .../opt/anaconda3/envs/dlc-macOS-CPU/lib/python3.6/site-packages/deeplabcut/utils
 
+![xrommtoolslocation](https://user-images.githubusercontent.com/53494838/74692595-9ccb9080-51ad-11ea-9906-e6b841238ad7.PNG)
+
 5.  **Importantly,** Follow DLC documentation to verify successful installation before proceeding.
 
 ## Step 2: Track training data in XMALab
