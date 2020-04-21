@@ -37,7 +37,8 @@ Follow along with the standard DLC workflow, creating a project and editing the 
 
 ## Step 4: Create training dataset and train first iteration of neural network
 
-This involves the functions xma_to_dlc, create_training_dataset, and train_network
+This involves the functions xma_to_dlc, create_training_dataset, and train_network.
+xma_to_dlc requires a folder with subfolders for each trial you tracked frames from. Within each trialsubfolder, there should be the 2D points file (from XMALab) and the cam1 and cam2 videos (or folders with JPG stacks).
 
 ## Step 5: Analyze (predict points for) new videos
 
