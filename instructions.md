@@ -6,7 +6,7 @@ This workflow has been tested on machines running Windows 10 using the DeepLabCu
 
 1. Install the latest version of XMALab found [here](https://bitbucket.org/xromm/xmalab/).
 2. Follow [DLC documentation](https://github.com/AlexEMG/DeepLabCut/blob/master/docs/installation.md) to install Anaconda environment. We recommend using the provided [easy install](https://github.com/AlexEMG/DeepLabCut/blob/master/conda-environments/README.md).
-3. If you haven't already, clone or download this repository, and locate the XROMM_DLCTools [functions](xrommtools.py) and [Demo Jupyter Notebook](XROMM_Pipeline_Demo.ipynb)
+3. If you haven't already, clone or download this repository, and locate the XROMM_DLCTools [functions](/functions/xrommtools.py) and [Demo Jupyter Notebook](XROMM_Pipeline_Demo.ipynb)
 4. **Copy** the xrommtools.py file into the DLC Anaconda environment's utils folder, which can be found where Anaconda was installed- here: ...\Anaconda3\envs\dlc-windowsGPU\Lib\site-packages\deeplabcut\utils
 
       Or on a Mac:
