@@ -73,7 +73,7 @@ def xma_to_dlc(path_config_file,data_path,dataset_name,scorer,nframes,nnetworks 
             if sum(len(x) for x in picked_frames) < nframes:
                 if count == 0:
                     picked_frames.insert(trialnum,[idx[trialnum][count]])
-                elif count <= len(idx[trialnum]):
+                elif count < len(idx[trialnum]):
                     picked_frames[trialnum] = picked_frames[trialnum]+[idx[trialnum][count]]
         count += 1
 
