@@ -33,16 +33,18 @@ Note that if you wish to create a project with individual networks for each came
 
 ## Step 3: Create DeepLabCut Project and edit metadata
 
-Follow along with the standard DLC workflow, creating a project and editing the config file to reflect the specifics of your data (i.e. how many points, etc.)
+Follow along with the standard DLC workflow, creating a project and editing the config file to reflect the specifics of your data (i.e. how many points, etc.) 
 
 ## Step 4: Create training dataset and train first iteration of neural network
 
 This involves the functions xma_to_dlc, create_training_dataset, and train_network.
 - xma_to_dlc requires a folder with subfolders for each trial you tracked frames from. Within each trial subfolder, there should be the 2D points file (from XMALab) and the cam1 and cam2 videos (or folders with JPG stacks).
 
+At this point, be sure to go into the network specific configuration file/files and edit parameters to optimize network performance. Specifically, tuning pose_dist_threshold for marker size, as well as global threshold for scaling.
+
 ## Step 5: Analyze (predict points for) new videos
 
-This involves the function analyze_xromm_videos, which calls the native analyze_videos function.
+This involves the function analyze_xromm_videos, which calls the native analyze_videos function. You can manually turn on DLC's built-in filter if you wish to filter the predictions before importing into XMALab (the default is for this to be off.)
 
 ## Step 6: Import predicted points into XMALab and evaluate performance
 
