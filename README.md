@@ -1,7 +1,7 @@
 # xromm
 Integrate [XMALab](https://bitbucket.org/xromm/xmalab) and [DeepLabCut](https://github.com/AlexEMG/DeepLabCut) for high-throughput XROMM. Pipeline created by J.D. Laurence-Chasen.
 
-See our [methods paper](https://jeb.biologists.org/content/early/2020/07/13/jeb.226720) in the Journal of Experimental Biology.
+See (and cite!) our [methods paper](https://jeb.biologists.org/content/early/2020/07/13/jeb.226720) in the Journal of Experimental Biology.
 
 [Go to instructions](https://github.com/jdlaurence/xromm/blob/master/instructions.md)
 
