@@ -25,7 +25,17 @@ _**It is essential**_ that the tracking in this training dataset is as accurate 
 
 
 
-2. *Export 2D points*. The function xma_to_dlc requires a specific folder struture to bring XMALab tracked data into DeepLabCut. Each trial with frames you wish to include in the training dataset must have its own folder, which must contain the exported 2D points csv (use default export settings), as well as the trial images. Trial images can be in the form of AVI files, or cam1/cam2 subfolders with JPG stacks.
+2. *Export 2D points*. The function xma_to_dlc requires a specific folder struture to bring XMALab tracked data into DeepLabCut. Each trial with frames you wish to include in the training dataset must have its own folder, which must contain the exported (disorted) 2D points csv (use default export settings), as well as the trial images. Trial images can be in the form of AVI files, or cam1/cam2 subfolders with JPG stacks.
+- Example folder structure:
+  - .../trainingdata/
+    - trial01
+      - trial01_2dpts.csv 
+      - trial01_camera1.avi
+      - trial01_camera2.avi
+    - trial02  
+      - trial02_2dpts.csv 
+      - trial02_camera1.avi
+      - trial02_camera2.avi
 
 ## From this point on, follow along with the provided [Demo Jupyter Notebook](XROMM_Pipeline_Demo.ipynb). Brief explanations of the steps are are below:
 
