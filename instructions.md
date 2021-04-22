@@ -37,7 +37,7 @@ _**It is essential**_ that the tracking in this training dataset is as accurate 
       - trial02_camera1.avi
       - trial02_camera2.avi
 
-## From this point on, follow along with the provided [Demo Jupyter Notebook](XROMM_Pipeline_Demo.ipynb). Brief explanations of the steps are are below:
+## From this point on, follow along with the provided [Demo Jupyter Notebook](/templates/XROMM_Pipeline_Demo.ipynb). Brief explanations of the steps are are below:
 
 Note that if you wish to create a project with individual networks for each camera plane, use the 2Cam demo notebook.
 
