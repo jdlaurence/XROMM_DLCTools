@@ -510,7 +510,6 @@ def add_frames(path_config_file, data_path, iteration, frames, nnetworks = 1, pa
         h5file = [x for x in contents if '.h5' in x]
         csvfile = [x for x in contents if '.csv' in x]
         data = pd.read_hdf(labeleddata_path+'/'+h5file[0]) # read old point labels
-        relnames = []
 
         for camera in cameras:
 
@@ -518,6 +517,7 @@ def add_frames(path_config_file, data_path, iteration, frames, nnetworks = 1, pa
 
             for trialnum,trial in enumerate(trialnames):
             # get video file
+                relnames = []
                 file = []
 
                 contents = os.listdir(data_path+"/"+trial)       
