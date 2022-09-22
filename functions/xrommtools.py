@@ -377,7 +377,7 @@ def add_frames(path_config_file, data_path, iteration, frames, nnetworks = 1, pa
     # read frames from csv 
     if '.csv' in frames:
         f = pd.read_csv(frames,header=None)
-        trialnames = list(f.loc[:,0]) # first row of frames file must be trialnames
+        trialnames = list(f.iloc[:,0]) # first row of frames file must be trialnames
         picked_frames = []
         # this is disgusting code
         for row in range(f.shape[0]):
