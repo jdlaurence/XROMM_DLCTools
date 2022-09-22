@@ -581,7 +581,8 @@ def add_frames(path_config_file, data_path, iteration, frames, nnetworks = 1, pa
                                 pointsfile = r
                 else:
                     pointsfile = pointsfile[0]
-
+                if isinstance(pointsfile,str) != True
+                    raise ValueError('Please check the points files in trial '+trial+' iteration '+str(iteration)+' folder')
                 df = pd.read_csv(data_path+'/'+trial+"/"+"it"+str(iteration)+'/'+pointsfile,sep=',',header=None)
                 df = df.loc[1:,].reset_index(drop=True)
                 xpos = df.iloc[frames,0+(camera-1)*2::4]
