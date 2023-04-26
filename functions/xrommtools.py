@@ -27,7 +27,7 @@ def xma_to_dlc(path_config_file,data_path,dataset_name,scorer,nframes,nnetworks 
     idx = []
     pnames = []
     subs =[["c01","c1","C01","C1","Cam1","cam1","Cam01","cam01","Camera1","camera1"],["c02","c2","C02","C2","Cam2","cam2","Cam02","cam02","Camera2","camera2"]]
-    trialnames = os.listdir(data_path)
+    trialnames = [folder for folder in os.listdir(data_path) if os.path.isdir(os.path.join(data_path, folder)) and not folder.startswith('.')]
 
 
     ### PART 1: Pick frames for dataset
@@ -581,7 +581,7 @@ def add_frames(path_config_file, data_path, iteration, frames, nnetworks = 1, pa
                                 pointsfile = r
                 else:
                     pointsfile = pointsfile[0]
-                if isinstance(pointsfile,str) != True
+                if isinstance(pointsfile,str) != True:
                     raise ValueError('Please check the points files in trial '+trial+' iteration '+str(iteration)+' folder')
                 df = pd.read_csv(data_path+'/'+trial+"/"+"it"+str(iteration)+'/'+pointsfile,sep=',',header=None)
                 df = df.loc[1:,].reset_index(drop=True)
